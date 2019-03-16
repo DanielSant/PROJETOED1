@@ -2,59 +2,67 @@ package filmes;
 
 public class Filmes
 {
-	double orcamento;
-	String generos; // Aventura, Ficcao Cien
-	String paginaSite;
-	int idFilme;
-	String palavrasChave;
-	String linguaOrigianl;
-	String tituloOriginal;
-	String sinopse;
-	double popularidade;
-	String produtora;
-	String paisProducao;
-	String dataLancamento;
-	double receita;
-	int tempoFilme;
-	String idiomaFalado;
-	String status;
-	String sloganFilme;
-	String titulo;
-	double mediaVotos;
-	double contagemVotos;
+	String orcamento = "";
+	String generos = ""; // Aventura, Ficcao Cien
+	String paginaSite = "";
+	String idFilme = "";
+	String palavrasChave = "";
+	String linguaOrigianl = "";
+	String tituloOriginal = "";
+	String sinopse = "";
+	String popularidade = "";
+	String produtora = "";
+	String paisProducao = "";
+	String dataLancamento = "";
+	String receita = "";
+	String tempoFilme = "";
+	String idiomaFalado = "";
+	String status = "";
+	String sloganFilme = "";
+	String titulo = "";
+	String mediaVotos = "";
+	String contagemVotos = "";
 	
-	public double getOrcamento()
+	public String getOrcamento()
 	{
 		return orcamento;
 	}
-	public void setOrcamento(double orcamento)
+	
+	public void setOrcamento(String orcamento)
 	{
 		this.orcamento = orcamento;
 	}
+	
+	public void setGeneros(String generos2)
+	{
+		this.generos = generos2;
+	}
+	
 	public String getGeneros()
 	{
 		return generos;
 	}
-	public void setGeneros(String generos)
-	{
-		this.generos = generos;
-	}
+
 	public String getPaginaSite()
 	{
 		return paginaSite;
 	}
+	
 	public void setPaginaSite(String paginaSite)
 	{
 		this.paginaSite = paginaSite;
 	}
-	public int getIdFilme()
+	
+	public String getIdFilme()
 	{
 		return idFilme;
 	}
-	public void setIdFilme(int idFilme)
+	
+	public void setIdFilme(String idFilme)
 	{
 		this.idFilme = idFilme;
 	}
+	
 	public String getPalavrasChave()
 	{
 		return palavrasChave;
@@ -87,11 +95,11 @@ public class Filmes
 	{
 		this.sinopse = sinopse;
 	}
-	public double getPopularidade()
+	public String getPopularidade()
 	{
 		return popularidade;
 	}
-	public void setPopularidade(double popularidade)
+	public void setPopularidade(String popularidade)
 	{
 		this.popularidade = popularidade;
 	}
@@ -119,19 +127,19 @@ public class Filmes
 	{
 		this.dataLancamento = dataLancamento;
 	}
-	public double getReceita()
+	public String getReceita()
 	{
 		return receita;
 	}
-	public void setReceita(double receita)
+	public void setReceita(String receita)
 	{
 		this.receita = receita;
 	}
-	public int getTempoFilme()
+	public String getTempoFilme()
 	{
 		return tempoFilme;
 	}
-	public void setTempoFilme(int tempoFilme)
+	public void setTempoFilme(String tempoFilme)
 	{
 		this.tempoFilme = tempoFilme;
 	}
@@ -167,19 +175,19 @@ public class Filmes
 	{
 		this.titulo = titulo;
 	}
-	public double getMediaVotos()
+	public String getMediaVotos()
 	{
 		return mediaVotos;
 	}
-	public void setMediaVotos(double mediaVotos)
+	public void setMediaVotos(String mediaVotos)
 	{
 		this.mediaVotos = mediaVotos;
 	}
-	public double getContagemVotos()
+	public String getContagemVotos()
 	{
 		return contagemVotos;
 	}
-	public void setContagemVotos(double contagemVotos)
+	public void setContagemVotos(String contagemVotos)
 	{
 		this.contagemVotos = contagemVotos;
 	}

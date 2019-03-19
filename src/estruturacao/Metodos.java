@@ -91,20 +91,21 @@ public class Metodos
 		return true;
 	}
 
-	public Ligacao pesquisaRemove(Filmes chave)
+	public void pesquisa(Ligacao chave)
 	{
 		Ligacao atual = primeiro;
-		while (atual.filme != chave)
+		while (atual != null)
 		{
+			if (atual.filme.getTitulo().equals(chave.filme.getTitulo()))
+				System.out.println(atual.filme.getIdFilme());
+				//return null;
 			atual = atual.proximo;
-			if (atual == null)
-				return null;
 		}
-		if (atual == primeiro)
+		/*if (atual == primeiro)
 			primeiro = atual.proximo;
 		else
-			atual.proximo.anterior = atual.anterior;
-		return atual;
+			atual.proximo.anterior = atual.anterior;*/
+		//return atual;
 	}
 
 	public void imprimeContrario()
@@ -122,11 +123,14 @@ public class Metodos
 	public void imprimeOrdem()
 	{ // imprime do primeiro ao ultimo
 		System.out.print("List (primeiro->ultimo): ");
+		int i = 1;
 		Ligacao atual = primeiro;
 		while (atual != null)
 		{
+			System.out.print(i + " - ");
 			atual.linkExibicao();
 			atual = atual.proximo;
+			i++;
 		}
 		System.out.println("");
 	}

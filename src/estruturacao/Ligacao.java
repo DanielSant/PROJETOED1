@@ -17,6 +17,7 @@ public class Ligacao
 	public void linkExibicao()
 	{
 		System.out.print(filme.getTitulo());
+		System.out.print(" - " + filme.getIdFilme());
 		System.out.println();
 	}
 }

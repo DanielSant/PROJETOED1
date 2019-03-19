@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 
 import arquivo.ManipularArquivo;
+import estruturacao.Ligacao;
 import estruturacao.Metodos;
+import filmes.Filmes;
 
 public class Main
 {
@@ -15,6 +17,9 @@ public class Main
 	{
 		ManipularArquivo arq = new ManipularArquivo();
 		Metodos listaDupEncad = new Metodos();
+		Filmes chave = new Filmes();
+		chave.setTitulo("Primer");
+		Ligacao equal = new Ligacao(chave);
 		try {
 			listaDupEncad = arq.carregarFilmes(file);		
 		}
@@ -23,5 +28,6 @@ public class Main
 			System.out.println(e.toString());
 		}
 		listaDupEncad.imprimeOrdem();
+		listaDupEncad.pesquisa(equal);
 	}
 }

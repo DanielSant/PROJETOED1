@@ -2,12 +2,13 @@ package estruturacao;
 
 import filmes.Filmes;
 
-public class Metodos
+public class ListaDupEncad
 {
 	private Ligacao primeiro;
 	private Ligacao ultimo;
+	private int totalFilmes = 0;
 
-	public Metodos()
+	public ListaDupEncad()
 	{
 		primeiro = null;
 		ultimo = null;
@@ -125,13 +126,22 @@ public class Metodos
 		System.out.print("List (primeiro->ultimo): ");
 		int i = 1;
 		Ligacao atual = primeiro;
-		while (atual != null)
+		while (i < 4801)
 		{
 			System.out.print(i + " - ");
 			atual.linkExibicao();
 			atual = atual.proximo;
 			i++;
 		}
-		System.out.println("");
+	}
+
+	public int getTotalFilmes()
+	{
+		return totalFilmes;
+	}
+
+	public void setTotalFilmes(int totalFilmes)
+	{
+		this.totalFilmes = totalFilmes;
 	}
 }

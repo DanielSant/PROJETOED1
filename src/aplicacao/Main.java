@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import arquivo.ManipularArquivo;
 import estruturacao.Ligacao;
-import estruturacao.Metodos;
+import estruturacao.ListaDupEncad;
 import filmes.Filmes;
 
 public class Main
@@ -16,18 +16,21 @@ public class Main
 	public static void main(String[] args) 
 	{
 		ManipularArquivo arq = new ManipularArquivo();
-		Metodos listaDupEncad = new Metodos();
+		ListaDupEncad listaDesordenada = new ListaDupEncad();
 		Filmes chave = new Filmes();
 		chave.setTitulo("Primer");
 		Ligacao equal = new Ligacao(chave);
 		try {
-			listaDupEncad = arq.carregarFilmes(file);		
+			listaDesordenada = arq.carregarFilmes(file);		
 		}
 		catch (IOException e)
 		{
 			System.out.println(e.toString());
 		}
-		listaDupEncad.imprimeOrdem();
-		listaDupEncad.pesquisa(equal);
+		
+		//ListaDupEncad listaOrdenada = 
+		listaDesordenada.imprimeOrdem();
+		listaDesordenada.pesquisa(equal);
+		System.out.println(listaDesordenada.getTotalFilmes());
 	}
 }

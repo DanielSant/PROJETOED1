@@ -8,26 +8,26 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import estruturacao.Metodos;
+import estruturacao.ListaDupEncad;
 import filmes.Filmes;
 
 public class ManipularArquivo
 {
 	private BufferedReader br;
 
-	public Metodos carregarFilmes(File file) throws IOException
+	public ListaDupEncad carregarFilmes(File file) throws IOException
 	{
 		FileReader fr = new FileReader(file);
 		br = new BufferedReader(fr);
 		String filme = null;
-		Metodos lista = new Metodos();
+		ListaDupEncad lista = new ListaDupEncad();
 
-		if (file.exists())
+		if (file.exists()) 
 		{
-			while ((filme = br.readLine()) != null)
+			int tot = 1;
+			while ((filme = br.readLine()) != null && tot < 4801)
 			{
 				Filmes movie = new Filmes();
-
 				String auxFilme[] = filme.split("\t");
 
 				try
@@ -130,33 +130,14 @@ public class ManipularArquivo
 					movie.setMediaVotos(auxFilme[18]);
 					movie.setContagemVotos(auxFilme[19]);
 					lista.insereFinal(movie);
+					lista.setTotalFilmes(tot);
+					tot++;
 				}
 				catch(ArrayIndexOutOfBoundsException e)
 				{
 					lista.insereFinal(movie);
 					continue;
 				}
-				/*System.out.println("-------------------------------------------------------");
-				System.out.println(movie.getOrcamento());
-				System.out.println(movie.getGeneros());
-				System.out.println(movie.getPaginaSite());
-				System.out.println(movie.getIdFilme());
-				System.out.println(movie.getPalavrasChave());
-				System.out.println(movie.getLinguaOrigianl());
-				System.out.println(movie.getTituloOriginal());
-				System.out.println(movie.getSinopse());
-				System.out.println(movie.getPopularidade());
-				System.out.println(movie.getProdutora());
-				System.out.println(movie.getPaisProducao());
-				System.out.println(movie.getDataLancamento());
-				System.out.println(movie.getReceita());
-				System.out.println(movie.getTempoFilme());
-				System.out.println(movie.getIdiomaFalado());
-				System.out.println(movie.getStatus());
-				System.out.println(movie.getSloganFilme());
-				System.out.println(movie.getTitulo());
-				System.out.println(movie.getMediaVotos());
-				System.out.println(movie.getContagemVotos());*/
 			}
 		} else
 		{

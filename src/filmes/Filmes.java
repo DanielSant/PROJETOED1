@@ -22,6 +22,7 @@ public class Filmes
 	String titulo = "";
 	String mediaVotos = "";
 	String contagemVotos = "";
+	int totalFilmes = 0;
 	
 	public String getOrcamento()
 	{
@@ -190,5 +191,15 @@ public class Filmes
 	public void setContagemVotos(String contagemVotos)
 	{
 		this.contagemVotos = contagemVotos;
+	}
+	
+	public void setTotaFilmes(int tot)
+	{
+		this.totalFilmes = tot;
+	}
+	
+	public int getTotFilme()
+	{
+		return this.totalFilmes;
 	}
 }

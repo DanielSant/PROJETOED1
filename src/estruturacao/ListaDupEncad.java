@@ -13,6 +13,26 @@ public class ListaDupEncad
 		primeiro = null;
 		ultimo = null;
 	}
+	
+	public Ligacao getPrimeiro()
+	{
+		return this.primeiro;
+	}
+	
+	public Ligacao getUltimo()
+	{
+		return this.ultimo;
+	}
+	
+	public void setPrimeiro(Ligacao primeiro)
+	{
+		this.primeiro = primeiro;
+	}
+	
+	public void setUltimo(Ligacao ultimo)
+	{
+		this.ultimo = ultimo;
+	}
 
 	public boolean vazia()
 	{
@@ -123,10 +143,10 @@ public class ListaDupEncad
 
 	public void imprimeOrdem()
 	{ // imprime do primeiro ao ultimo
-		System.out.print("List (primeiro->ultimo): ");
+		System.out.print("List (primeiro->ultimo): \n");
 		int i = 1;
 		Ligacao atual = primeiro;
-		while (i < 4801)
+		while (i < getTotalFilmes())
 		{
 			System.out.print(i + " - ");
 			atual.linkExibicao();

@@ -32,12 +32,15 @@ public class Main
 		Ligacao auxConcha[] = new Ligacao[listaDesordenada.getTotalFilmes()];
 		Ligacao atual = listaDesordenada.getPrimeiro();
 		int i = 0;
+		System.out.println("Desordenada-----------------------");
 		while (atual != null && i < listaDesordenada.getTotalFilmes())
 		{
+			System.out.println(atual.filme.getTitulo());
 			auxConcha[i] = atual;
 			atual = atual.proximo;
 			i++;
 		}
+		System.out.println("--------------------------------------");
 		shellOrdena.shellSort(auxConcha);
 		
 		System.out.println("Concha-------------------");
@@ -45,6 +48,10 @@ public class Main
 		{
 			System.out.println(auxConcha[j].filme.getTitulo());
 		}
+		System.out.println("Comparacoes------------");
+		System.out.println(shellOrdena.getComparacoes());
+		System.out.println("Movimentacoes------------");
+		System.out.println(shellOrdena.getTrocas());
 		System.out.println("----------------------------------");
 		
 		Ligacao auxBolha[] = new Ligacao[listaDesordenada.getTotalFilmes()];

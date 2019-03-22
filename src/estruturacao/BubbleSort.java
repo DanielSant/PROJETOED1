@@ -29,7 +29,7 @@ public class BubbleSort
 	public void bubbleSort(Ligacao auxBolha[])
 	{
 		int out, in;
-		int comp = 1, mov = 0;
+		int comp = 1, mov = 1;
 		for (out = auxBolha.length-1; out > 0; out--)
 		{
 			for (in = 0; in < out; in++)

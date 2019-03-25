@@ -24,7 +24,6 @@ public class BubbleSort
 	{
 		this.trocas = trocas;
 	}
-
 	
 	public void bubbleSort(Ligacao auxBolha[])
 	{

@@ -154,6 +154,20 @@ public class ListaDupEncad
 			i++;
 		}
 	}
+	
+	public String pnListarFilmesOrdem()
+	{
+		int i = 1;
+		Ligacao atual = primeiro;
+		String atualAux = atual.filme.getTitulo() + "\n";
+ 		while (i < getTotalFilmes())
+		{
+			atualAux = atualAux + atual.proximo.filme.getTitulo() + "\n";
+			atual = atual.proximo;
+			i++;
+		}
+		return atualAux;
+	}
 
 	public int getTotalFilmes()
 	{

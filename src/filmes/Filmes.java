@@ -193,12 +193,12 @@ public class Filmes
 		this.contagemVotos = contagemVotos;
 	}
 	
-	public void setTotaFilmes(int tot)
+	public void setTotalFilmes(int tot)
 	{
 		this.totalFilmes = tot;
 	}
 	
-	public int getTotFilme()
+	public int getTotalFilmes()
 	{
 		return this.totalFilmes;
 	}

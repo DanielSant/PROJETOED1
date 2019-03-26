@@ -33,6 +33,7 @@ import javax.swing.JTextArea;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 
 public class Telinha extends JFrame
 {
@@ -150,21 +151,27 @@ public class Telinha extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1400, 780);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(51, 153, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		JLabel lblNewLabel = new JLabel("BubbleSort");
-		lblNewLabel.setForeground(new Color(51, 51, 153));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
 
 		JLabel lblNewLabel_1 = new JLabel("ShellSort");
-		lblNewLabel_1.setForeground(new Color(51, 51, 153));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblNewLabel_2 = new JLabel("Load Arquivo");
-		lblNewLabel_2.setForeground(new Color(51, 51, 153));
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 30));
 
@@ -176,42 +183,45 @@ public class Telinha extends JFrame
 			}
 		});
 		pnBubble.setFont(new Font("Times New Roman", Font.BOLD, 27));
-		pnBubble.setBackground(UIManager.getColor("Button.shadow"));
+		pnBubble.setBackground(UIManager.getColor("Button.light"));
 		pnBubble.setEditable(false);
 
 		JLabel lblNewLabel_3 = new JLabel("Estrutura de Dados I");
-		lblNewLabel_3.setForeground(new Color(102, 0, 204));
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 60));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblPesquisarFilmes = new JLabel("Pesquisar Filmes");
+		lblPesquisarFilmes.setForeground(new Color(255, 255, 255));
 		lblPesquisarFilmes.setFont(new Font("Times New Roman", Font.BOLD, 30));
 
 		JLabel lblSequencial = new JLabel("Sequencial");
 		lblSequencial.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSequencial.setForeground(new Color(51, 51, 153));
+		lblSequencial.setForeground(new Color(255, 255, 255));
 		lblSequencial.setFont(new Font("Times New Roman", Font.BOLD, 30));
 
 		JLabel lblBinria = new JLabel("Bin\u00E1ria");
 		lblBinria.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBinria.setForeground(new Color(51, 51, 153));
+		lblBinria.setForeground(new Color(255, 255, 255));
 		lblBinria.setFont(new Font("Times New Roman", Font.BOLD, 30));
 
 		JLabel lblNewLabel_4 = new JLabel("T\u00EDtulo:");
+		lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 
 		pesquisa = new JTextField();
+		pesquisa.setBackground(UIManager.getColor("Button.background"));
 		pesquisa.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		pesquisa.setColumns(10);
 
 		JTextPane pnSequen = new JTextPane();
-		pnSequen.setBackground(UIManager.getColor("Button.shadow"));
+		pnSequen.setBackground(UIManager.getColor("Button.light"));
 		pnSequen.setFont(new Font("Times New Roman", Font.BOLD, 40));
 		pnSequen.setEditable(false);
 
 		JTextPane pnBin = new JTextPane();
-		pnBin.setBackground(UIManager.getColor("Button.shadow"));
+		pnBin.setBackground(UIManager.getColor("Button.light"));
 		pnBin.setFont(new Font("Times New Roman", Font.BOLD, 40));
 		pnBin.setEditable(false);
 
@@ -221,11 +231,13 @@ public class Telinha extends JFrame
 		JScrollPane jscrollPane = new JScrollPane();
 
 		JTextArea pnListarFilmes = new JTextArea();
+		pnListarFilmes.setBackground(UIManager.getColor("CheckBox.background"));
 		pnListarFilmes.setEditable(false);
 		pnListarFilmes.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		jscrollPane.setViewportView(pnListarFilmes);
 
 		JButton btnPesquisa = new JButton("Pesquisar");
+		btnPesquisa.setBackground(UIManager.getColor("Button.light"));
 		btnPesquisa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pnListarFilmes.setText(listaDesordenada.pesquisa(pesquisa.getText()));
@@ -244,7 +256,7 @@ public class Telinha extends JFrame
 				pnListarFilmes.setText(listaDesordenada.pnListarFilmesOrdem());
 			}
 		});
-		pnArquivo.setBackground(UIManager.getColor("Button.shadow"));
+		pnArquivo.setBackground(UIManager.getColor("Button.light"));
 		pnArquivo.setForeground(new Color(0, 0, 0));
 		pnArquivo.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		pnArquivo.setEditable(false);
@@ -259,7 +271,7 @@ public class Telinha extends JFrame
 			}
 		});
 		pnShell.setFont(new Font("Times New Roman", Font.BOLD, 27));
-		pnShell.setBackground(UIManager.getColor("Button.shadow"));
+		pnShell.setBackground(UIManager.getColor("Button.light"));
 		pnShell.setEditable(false);
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

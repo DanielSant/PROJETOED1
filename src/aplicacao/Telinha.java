@@ -26,17 +26,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.JToolBar;
-import java.awt.event.MouseMotionAdapter;
 
 public class Telinha extends JFrame
 {
@@ -52,15 +48,16 @@ public class Telinha extends JFrame
 	private static long fimBolha;
 	private static BubbleSort bubbleordena = new BubbleSort();
 	private static ListaDupEncad listaDesordenada = new ListaDupEncad();
+	private static ListaDupEncad listaOrdenada = new ListaDupEncad();
 	private static ManipularArquivo arq = new ManipularArquivo();
-	private static Ligacao auxConcha[] = new Ligacao[listaDesordenada.getTotalFilmes()];
 	private static ShellSort shellOrdena = new ShellSort();
+	private static String auxStringShell = "";
 
 	public static void aplication()
 	{
 		Filmes vetorDesordenado[] = new Filmes[5000];
 		try
-		{
+		{   // ----------------------------------------- 
 			long inicio = System.currentTimeMillis();
 			listaDesordenada = arq.carregarFilmes(file);
 			fim = System.currentTimeMillis() - inicio;
@@ -69,16 +66,33 @@ public class Telinha extends JFrame
 			arq.carregarFilmes(file, vetorDesordenado);
 			long fim2 = System.currentTimeMillis() - inicio2;
 			// ----------------------------------------------
-			System.out.println("Tempo de carregar os filmes com vetor em milisegundos: " + fim2);
 		} catch (IOException e)
 		{
 			System.out.println(e.toString());
 		}
-
+		
+		Ligacao auxConcha[] = new Ligacao[listaDesordenada.getTotalFilmes()];
+		Ligacao atual = listaDesordenada.getPrimeiro();
+		int i = 0;
+		while (atual != null && i < listaDesordenada.getTotalFilmes())
+		{
+			auxConcha[i] = atual;
+			atual = atual.proximo;
+			i++;
+		}
 		// TempoShell----------------------------------------------------------
 		long inicio = System.currentTimeMillis();
 		shellOrdena.shellSort(auxConcha);
 		fimShell = System.currentTimeMillis() - inicio;
+		for (int j = 0; j < auxConcha.length; j++)
+		{
+			listaOrdenada.insereFinal(auxConcha[j].filme);
+			if (!auxConcha[j].filme.getTitulo().isEmpty())
+			{
+				auxStringShell = auxStringShell + auxConcha[j].filme.getTitulo() + "\n";				
+			}
+		}
+		listaOrdenada.setTotalFilmes(auxConcha.length);
 		// ----------------------------------------------------------
 		
 		Ligacao auxBolha[] = new Ligacao[listaDesordenada.getTotalFilmes()];
@@ -96,12 +110,12 @@ public class Telinha extends JFrame
 		fimBolha = System.currentTimeMillis() - inicio1;
 		// ----------------------------------------------------------
 	}
-
+	private static Ligacao pesqBinaria[];
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args)
-	{
+	{	
 		EventQueue.invokeLater(new Runnable()
 		{
 			public void run()
@@ -109,6 +123,15 @@ public class Telinha extends JFrame
 				try
 				{
 					aplication();
+					pesqBinaria = new Ligacao[listaOrdenada.getTotalFilmes()];
+					Ligacao atual2 = listaOrdenada.getPrimeiro();
+					int i2 = 0;
+					while (atual2 != null && i2 < listaOrdenada.getTotalFilmes())
+					{
+						pesqBinaria[i2] = atual2;
+						atual2 = atual2.proximo;
+						i2++;
+					}
 					Telinha frame = new Telinha();
 					frame.setVisible(true);
 				} catch (Exception e)
@@ -152,7 +175,7 @@ public class Telinha extends JFrame
 				pnBubble.setText("Comparações:\n" + bubbleordena.getComparacoes() + "\nTrocas:\n" + bubbleordena.getTrocas() + "\nTempo:\n" + fimBolha + " milisegundos");
 			}
 		});
-		pnBubble.setFont(new Font("Times New Roman", Font.BOLD, 25));
+		pnBubble.setFont(new Font("Times New Roman", Font.BOLD, 27));
 		pnBubble.setBackground(UIManager.getColor("Button.shadow"));
 		pnBubble.setEditable(false);
 
@@ -182,15 +205,14 @@ public class Telinha extends JFrame
 		pesquisa.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		pesquisa.setColumns(10);
 
-		JButton btnPesquisa = new JButton("Pesquisar");
-		btnPesquisa.setFont(new Font("Times New Roman", Font.BOLD, 20));
-
 		JTextPane pnSequen = new JTextPane();
 		pnSequen.setBackground(UIManager.getColor("Button.shadow"));
+		pnSequen.setFont(new Font("Times New Roman", Font.BOLD, 40));
 		pnSequen.setEditable(false);
 
 		JTextPane pnBin = new JTextPane();
 		pnBin.setBackground(UIManager.getColor("Button.shadow"));
+		pnBin.setFont(new Font("Times New Roman", Font.BOLD, 40));
 		pnBin.setEditable(false);
 
 		JLabel lblNewLabel_5 = new JLabel("");
@@ -203,11 +225,22 @@ public class Telinha extends JFrame
 		pnListarFilmes.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		jscrollPane.setViewportView(pnListarFilmes);
 
+		JButton btnPesquisa = new JButton("Pesquisar");
+		btnPesquisa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pnListarFilmes.setText(listaDesordenada.pesquisa(pesquisa.getText()));
+				listaDesordenada.pesquisaB(pesquisa.getText(), pesqBinaria);
+				pnSequen.setText("Comparações:\n" + listaDesordenada.getCompSequencial() + "\nTempo:\n" + listaDesordenada.getTempSequencial() + " milisegundos");
+				pnBin.setText("Comparações:\n" + listaDesordenada.getCompBin() + "\nTempo:\n" + listaDesordenada.getTempBin() + " milisegundos");
+			}
+		});
+		btnPesquisa.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		
 		JTextPane pnArquivo = new JTextPane();
 		pnArquivo.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				pnArquivo.setText("Tempo de carregamento:\n" + fim + " milisegundos");
+				pnArquivo.setText("Tempo:\n" + fim + " milisegundos" + "\nTotal Filmes:\n" + listaDesordenada.getTotalFilmes());
 				pnListarFilmes.setText(listaDesordenada.pnListarFilmesOrdem());
 			}
 		});
@@ -221,11 +254,11 @@ public class Telinha extends JFrame
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				pnShell.setText(
-						"Comparações:\n" + shellOrdena.getComparacoes() + "\nTrocas:\n" + shellOrdena.getTrocas());
-				pnListarFilmes.setText("Para funcionar");
+						"Comparações:\n" + shellOrdena.getComparacoes() + "\nTrocas:\n" + shellOrdena.getTrocas() + "\nTempo:\n" + fimShell + " milisegundos");
+				pnListarFilmes.setText(auxStringShell);
 			}
 		});
-		pnShell.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		pnShell.setFont(new Font("Times New Roman", Font.BOLD, 27));
 		pnShell.setBackground(UIManager.getColor("Button.shadow"));
 		pnShell.setEditable(false);
 

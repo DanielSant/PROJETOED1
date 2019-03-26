@@ -25,7 +25,7 @@ public class ManipularArquivo
 		if (file.exists()) 
 		{
 			int tot = 1;
-			while ((filme = br.readLine()) != null && tot < 4801)
+			while ((filme = br.readLine()) != null)
 			{
 				Filmes movie = new Filmes();
 				String auxFilme[] = filme.split("\t");
@@ -155,7 +155,7 @@ public class ManipularArquivo
 		if (file.exists()) 
 		{
 			int tot = 1;
-			while ((filme = br.readLine()) != null && tot < 4801)
+			while ((filme = br.readLine()) != null)
 			{
 				Filmes movie = new Filmes();
 				String auxFilme[] = filme.split("\t");

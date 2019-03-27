@@ -52,7 +52,7 @@ public class Telinha extends JFrame
 	private static ListaDupEncad listaOrdenada = new ListaDupEncad();
 	private static ManipularArquivo arq = new ManipularArquivo();
 	private static ShellSort shellOrdena = new ShellSort();
-	private static String auxStringShell = "";
+	private static String auxStringShell = "Título\n\n";
 
 	public static void aplication()
 	{
@@ -63,9 +63,9 @@ public class Telinha extends JFrame
 			listaDesordenada = arq.carregarFilmes(file);
 			fim = System.currentTimeMillis() - inicio;
 			// -----------------------------------------
-			long inicio2 = System.currentTimeMillis();
-			arq.carregarFilmes(file, vetorDesordenado);
-			long fim2 = System.currentTimeMillis() - inicio2;
+			//long inicio2 = System.currentTimeMillis();
+			arq.carregarFilmes(file, vetorDesordenado); // Ideia para testar com mais de uma estrutura
+			//long fim2 = System.currentTimeMillis() - inicio2;
 			// ----------------------------------------------
 		} catch (IOException e)
 		{
@@ -90,7 +90,7 @@ public class Telinha extends JFrame
 			listaOrdenada.insereFinal(auxConcha[j].filme);
 			if (!auxConcha[j].filme.getTitulo().isEmpty())
 			{
-				auxStringShell = auxStringShell + auxConcha[j].filme.getTitulo() + "\n";				
+				auxStringShell = auxStringShell + auxConcha[j].filme.getTitulo() + "\t\t" + "\n";				
 			}
 		}
 		listaOrdenada.setTotalFilmes(auxConcha.length);
@@ -233,7 +233,7 @@ public class Telinha extends JFrame
 		JTextArea pnListarFilmes = new JTextArea();
 		pnListarFilmes.setBackground(UIManager.getColor("CheckBox.background"));
 		pnListarFilmes.setEditable(false);
-		pnListarFilmes.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		pnListarFilmes.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		jscrollPane.setViewportView(pnListarFilmes);
 
 		JButton btnPesquisa = new JButton("Pesquisar");

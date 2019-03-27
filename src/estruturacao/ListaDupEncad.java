@@ -131,14 +131,14 @@ public class ListaDupEncad
 		int meio, inicio = 0, fim = auxBolha.length - 1;
 		int i = 0;
 		long start = System.currentTimeMillis();
-		
+
 		while (inicio <= fim)
 		{
 			this.setCompBin(++i);
 			meio = (inicio + fim) / 2;
 			if (auxBolha[meio].filme.getTitulo().compareTo(chave) == 0)
 			{
-				//imprimir(auxBolha[meio].filme);
+				// imprimir(auxBolha[meio].filme);
 				inicio = fim + 1;
 			} else if (auxBolha[meio].filme.getTitulo().compareTo(chave) < 0)
 			{
@@ -150,8 +150,9 @@ public class ListaDupEncad
 		}
 		this.setTempBin(System.currentTimeMillis() - start);
 	}
-	
-	public void imprimir(Filmes filme){
+
+	public void imprimir(Filmes filme)
+	{
 		System.out.println("Nome.............: " + filme.getTitulo());
 		System.out.println("Data LanÃ§amento..: " + filme.getDataLancamento());
 		System.out.println("Tempo de ExecuÃ§Ã£o: " + filme.getTempoFilme());
@@ -162,14 +163,14 @@ public class ListaDupEncad
 	{
 		long inicio = System.currentTimeMillis();
 		Ligacao atual = primeiro;
-		String aux = "Título\t\tData de Lançamento\t\tDuração\t\tSinopse\n";
+		String aux = "Título\t\t\tData de Lançamento\t\tDuração\t\tMédia de votos\n\n";
 		int i = 0;
 		while (atual != null && i < this.getTotalFilmes())
 		{
 			this.setCompSequencial(++i);
 			if (atual.filme.getTitulo().contains(chave))
 				aux = aux + atual.filme.getTitulo() + "\t\t" + atual.filme.getDataLancamento() + "\t\t\t"
-						+ atual.filme.getTempoFilme() + "\t\t" + atual.filme.getSinopse() + "\n";
+						+ atual.filme.getTempoFilme() + "\t\t" + atual.filme.getMediaVotos() + "\n";
 			atual = atual.proximo;
 		}
 		this.setTempSequencial(System.currentTimeMillis() - inicio);
@@ -206,10 +207,10 @@ public class ListaDupEncad
 	{
 		int i = 1;
 		Ligacao atual = primeiro;
-		String atualAux = atual.filme.getTitulo() + "\n";
+		String atualAux = "Título\n\n";
 		while (i < getTotalFilmes())
 		{
-			atualAux = atualAux + atual.proximo.filme.getTitulo() + "\n";
+			atualAux = atualAux + atual.filme.getTitulo() + "\n";
 			atual = atual.proximo;
 			i++;
 		}
